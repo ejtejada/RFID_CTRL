@@ -12,7 +12,7 @@
 
 #include <SoftwareSerial.h> //Used for transmitting to the device
 
-SoftwareSerial softSerial(2, 3); //RX, TX
+SoftwareSerial softSerial(2, 3); //RX, TX sets serial pins to 2 and 3
 
 #include "SparkFun_UHF_RFID_Reader.h" //Library for controlling the M6E Nano module
 RFID nano; //Create instance
@@ -28,9 +28,9 @@ void setup()
     while (1); //Freeze!
   }
 
-  nano.setRegion(REGION_NORTHAMERICA); //Set to North America
+  nano.setRegion(REGION_NORTHAMERICA); //Set to North America this is frequency
 
-  nano.setReadPower(500); //5.00 dBm. Higher values may caues USB port to brown out
+  nano.setReadPower(500); //5.00 dBm. Higher values may caues USB port to brown out Sets power 5 mini decibals 
   //Max Read TX Power is 27.00 dBm and may cause temperature-limit throttling
 
   Serial.println(F("Press a key to begin scanning for tags."));
