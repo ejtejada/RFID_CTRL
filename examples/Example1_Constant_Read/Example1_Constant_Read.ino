@@ -124,7 +124,7 @@ boolean setupNano(long baudRate)
   }
   else
   {
-    //The module did not respond so assume it's just been powered on and communicating at 115200bps
+    //The module did not respond so assume it's just been powered on and communicating at 115200bps. Starts communicating with antenna (Line 144)
     softSerial.begin(115200); //Start software serial at 115200
 
     nano.setBaud(baudRate); //Tell the module to go to the chosen baud rate. Ignore the response msg
@@ -141,7 +141,7 @@ boolean setupNano(long baudRate)
   //The M6E has these settings no matter what
   nano.setTagProtocol(); //Set protocol to GEN2
 
-  nano.setAntennaPort(); //Set TX/RX antenna ports to 1
+  nano.setAntennaPort(); //Set TX/RX antenna ports to 1. sets to port pin 1
 
   return (true); //We are ready to rock
 }
