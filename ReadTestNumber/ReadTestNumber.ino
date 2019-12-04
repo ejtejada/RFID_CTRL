@@ -52,15 +52,17 @@ void loop()
   while (!Serial.available()); //Wait for user to send a character
   Serial.read(); //Throw away the user's character
 
-  byte myEPC[6]; //Most EPCs are 12 bytes
+  byte myEPC[12]; //Most EPCs are 12 bytes
+  int numEPC;
   byte myEPClength;
   byte responseType = 0;
-
+  byte responseType2 = 0;
   while (responseType != RESPONSE_SUCCESS)//RESPONSE_IS_TAGFOUND)
   {
-    myEPClength = sizeof(myEPC); //Length of EPC is modified each time .readTagEPC is called
+    myEPClength = sizeof(int); //Length of EPC is modified each time .readTagEPC is called
 
-    responseType = nano.readTagEPC(myEPC, myEPClength, 500); //Scan for a new tag up to 500ms
+    //responseType = nano.readTagEPC(myEPC, myEPClength, 500); //Scan for a new tag up to 500ms
+    responseType = nano.readTagEPC(numEPC, myEPClength, 500); //Scan for a new tag up to 500ms
     Serial.println(F("Searching for tag"));
   }
 
@@ -73,6 +75,7 @@ void loop()
   delay(150);
   */
   //Print EPC
+  /*
   Serial.print(F(" epc["));
   for (byte x = 0 ; x < myEPClength ; x++)
   {
@@ -80,7 +83,8 @@ void loop()
     Serial.print(myEPC[x], DEC);
     Serial.print(F(" "));
   }
-  Serial.println(F("]"));
+  Serial.println(F("]"));*/
+  Serial.print(numEPC, DEC);
 }
 
 //Gracefully handles a reader that is already configured and already reading continuously
